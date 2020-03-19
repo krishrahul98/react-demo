@@ -20,10 +20,31 @@ function App() {
       ]
     });
   };
+
+  const changeNameHandler = event => {
+    setPersonsState({
+      persons: [
+        { name: "Max", age: 22 },
+        { name: event.target.value, age: 38 },
+        { name: "Amit Kumar", age: 25 }
+      ]
+    });
+  };
+  const buttonStyle = {
+    backgroundColor: "white",
+    font: "inherit",
+    border: "1px solid blue",
+    padding: "8px",
+    cursor: "pointer"
+  };
+
   return (
     <div className='App'>
       <h1>Hello There</h1>
-      <button onClick={switchNameHandler.bind(this, "Krishna")}>
+      <button
+        style={buttonStyle}
+        onClick={switchNameHandler.bind(this, "Krishna")}
+      >
         Click ME
       </button>
       <Person
@@ -34,6 +55,7 @@ function App() {
       <Person
         name={personsState.persons[1].name}
         age={personsState.persons[1].age}
+        changed={changeNameHandler}
       >
         I am Here.
       </Person>
