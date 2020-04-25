@@ -7,18 +7,18 @@ class App extends Component {
     persons: [
       { id: "sgfagf1", name: "Rahul", age: 28 },
       { id: "sgfagf2", name: "Raj", age: 21 },
-      { id: "sgfagf3", name: "Amit", age: 29 }
+      { id: "sgfagf3", name: "Amit", age: 29 },
     ],
     otherState: "some other value",
-    showPersons: true
+    showPersons: true,
   };
 
   nameChangedHandler = (event, id) => {
-    const personIndex = this.state.persons.findIndex(p => {
+    const personIndex = this.state.persons.findIndex((p) => {
       return p.id === id;
     });
     const person = {
-      ...this.state.persons[personIndex]
+      ...this.state.persons[personIndex],
     };
 
     person.name = event.target.value;
@@ -34,7 +34,7 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
-  deletePersonHandler = personIndex => {
+  deletePersonHandler = (personIndex) => {
     const person = [...this.state.persons];
     person.splice(personIndex, 1);
     this.setState({ persons: person });
@@ -42,11 +42,12 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: "white",
+      backgroundColor: "green",
+      color: "white",
       font: "inherit",
       border: "1px solid blue",
       padding: "8px",
-      cursor: "pointer"
+      cursor: "pointer",
     };
 
     let persons = null;
@@ -61,18 +62,27 @@ class App extends Component {
                 age={person.age}
                 click={() => this.deletePersonHandler(index)}
                 key={person.id}
-                changed={event => this.nameChangedHandler(event, person.id)}
+                changed={(event) => this.nameChangedHandler(event, person.id)}
               />
             );
           })}
         </div>
       );
+      style.backgroundColor = "red";
+    }
+
+    const classes = [];
+    if (this.state.persons.length <= 2) {
+      classes.push("red");
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push("bold");
     }
 
     return (
       <div className='App'>
         <h1>Hi, I'm a React App</h1>
-        <p>This is really working!</p>
+        <p className={classes.join(" ")}>This is really working!</p>
         <button style={style} onClick={this.togglePersonsHandler}>
           Toggle Persons
         </button>
