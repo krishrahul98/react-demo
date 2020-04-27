@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Style from "./App.module.css";
+import "./App.css";
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
@@ -55,7 +55,7 @@ class App extends Component {
     }
 
     return (
-      <div className={Style.App}>
+      <div className='App'>
         <Cockpit
           persons={this.state.persons}
           showPerson={this.state.showPersons}
